@@ -160,4 +160,4 @@ Want to enhance the UI or add support for more file types? PRs are welcome!
 ## 💬 Contact
 
 For questions or collaboration:
-**Samitinjay** – [GitHub](https://github.com/your-username) | [Email](mailto:samitinjay@example.com)
+**Samitinjay** – [GitHub](https://github.com/Samitinjay1999/) | [Email](mailto:samitinjay1999@gmail.com)
