@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.sendQuery = sendQuery;
 
   /**
-   * Appends a message to the chat box with the sender's name and a timestamp.
+   * Appends a message to the chat box with a timestamp.
    * @param {string} sender - The sender of the message ("user" or "bot").
    * @param {string} text - The text content of the message.
    */
@@ -231,8 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) { // 5MB limit
-      alert("File size exceeds 5MB limit");
+    if (file.size > 10 * 1024 * 1024) { // 10MB limit
+      alert("File size exceeds 10MB limit");
       return;
     }
 
