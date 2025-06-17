@@ -1,16 +1,20 @@
-# app/services/embedding.py
-
 import requests
 import logging
 from config import GEMINI_API_KEY, EMBEDDING_URL, CHAT_URL # Keep CHAT_URL as it's used in generate_gemini_response
-import hashlib # Not used in this file, but was in your original snippet
+import hashlib 
 
 logger = logging.getLogger(__name__)
 
 # === Embed a single chunk ===
 def get_embedding(text):
     """
-    Generates an embedding for a given text chunk using the Gemini Embedding API.
+    Generates an embedding vector for a given text using the Gemini Embedding API.
+
+    Args:
+        text (str): The input text to embed.
+
+    Returns:
+        list or None: A list of embedding values if successful, else None.
     """
     try:
         # Use the EMBEDDING_URL from config.py
@@ -30,7 +34,7 @@ def get_embedding(text):
         logger.debug(f"Request data: {data}")
 
         response = requests.post(url, headers=headers, json=data)
-        response.raise_for_status() # Raise an exception for HTTP errors (4xx or 5xx)
+        response.raise_for_status() # Raise an exception if HTTP errors (4xx or 5xx)
 
         result = response.json()
         # For embedContent, the embedding values are typically under 'values'
@@ -63,7 +67,14 @@ def get_embedding(text):
 
 def generate_gemini_response(prompt, context_chunks):
     """
-    Generates a response from the Gemini chat model using provided context.
+    Uses the Gemini chat API to generate a natural language response using provided context chunks.
+
+    Args:
+        prompt (str): User query to be answered.
+        context_chunks (list): Relevant document text chunks to provide context.
+
+    Returns:
+        str: Model-generated response or a fallback message on failure.
     """
     try:
         url = f"{CHAT_URL}?key={GEMINI_API_KEY}"
